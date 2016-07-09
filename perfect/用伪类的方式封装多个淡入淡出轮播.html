@@ -193,6 +193,9 @@
         },
         _play:function (index) {
             var me = this;
+            if(index === me.cur){ //如果指向bullet中的li正好是当前所展示的图片号数则不做任何动作
+                return;
+            }
 //            $el.fadeTime = $el.fadeTime || 1000;
             if(index===0){          //由于0是假值，所以需要加上这句
                 me.cur = index;
@@ -203,10 +206,10 @@
                 me.$el.find('.carousel-ct').find('li').fadeOut(400);
 //                console.log(me.$el.find('.carousel-ct').find('li'));
                 me.$el.find('.carousel-ct').find('li').eq(me.cur).fadeIn(400,function () {
+                    me._setBullet();
                     me.isAnimate = true;
                 });
             }
-            me._setBullet();
         },
         _setBullet:function () {
             var me = this;
